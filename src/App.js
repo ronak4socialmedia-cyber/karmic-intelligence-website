@@ -86,6 +86,14 @@ const eventsList = [
 // --- Main App Component ---
 const App = () => {
  const [currentPage, setCurrentPage] = useState('home');
+
+   // Check pathname and set admin route
+  useEffect(() => {
+    if (window.location.pathname === '/admin') {
+      setCurrentPage('admin');
+    }
+  }, []);
+ 
  const [isMenuOpen, setIsMenuOpen] = useState(false);
  const [scrolled, setScrolled] = useState(false);
 
