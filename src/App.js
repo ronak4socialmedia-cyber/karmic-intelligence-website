@@ -623,10 +623,6 @@ const App = () => {
 
 
      {/* Main Content */}
-    // Check if accessing admin route
-    if (window.location.pathname === '/admin') {
-      return <AdminDashboard />;
-    }
        
      <main>
        {currentPage === 'home' && <HomePage />}
