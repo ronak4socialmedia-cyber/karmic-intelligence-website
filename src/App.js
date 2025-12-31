@@ -6,6 +6,7 @@ import {
  Book, GraduationCap, Building2, TrendingUp, Layout, Target,
  Briefcase, Video, Mic2, Star
 } from 'lucide-react';
+import AdminDashboard from './pages/AdminDashboard';
 
 
 // --- SEO Component ---
@@ -619,6 +620,11 @@ const App = () => {
 
 
      {/* Main Content */}
+    // Check if accessing admin route
+    if (window.location.pathname === '/admin') {
+      return <AdminDashboard />;
+    }
+       
      <main>
        {currentPage === 'home' && <HomePage />}
        {currentPage === 'services' && <ServicesPage />}
