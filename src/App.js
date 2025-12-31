@@ -6,8 +6,6 @@ import {
  Book, GraduationCap, Building2, TrendingUp, Layout, Target,
  Briefcase, Video, Mic2, Star
 } from 'lucide-react';
-import AdminDashboard from './pages/AdminDashboard';
-
 
 // --- SEO Component ---
 const MetaHead = ({ title, description }) => {
@@ -564,7 +562,6 @@ const App = () => {
    { label: 'Education', id: 'education' },
    { label: 'Podcasts', id: 'podcasts' },
    { label: 'Contact', id: 'contact' },
-     { label: 'Admin', id: 'admin' },
  ];
 
 
@@ -631,7 +628,6 @@ const App = () => {
        {currentPage === 'podcasts' && <PodcastsPage />}
        {currentPage === 'karmic-engineering' && <KarmicEngineeringPage />}
        {currentPage === 'contact' && <ContactPage />}
-        {currentPage === 'admin' && <AdminDashboard />}
      </main>
 
 
