@@ -568,7 +568,7 @@ const App = () => {
  ];
 
 
- return (
+ return 
    <div className="min-h-screen bg-[#08090d] text-gray-100 font-sans selection:bg-amber-500/30 selection:text-amber-200">
     
      {/* Navigation */}
