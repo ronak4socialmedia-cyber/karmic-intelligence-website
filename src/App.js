@@ -646,6 +646,7 @@ const App = () => {
 
 
      {/* Footer */}
+            {currentPage === 'admin' && <AdminDashboard />}
      <footer className="bg-[#050608] pt-24 pb-12 px-6 border-t border-white/5">
        <div className="max-w-7xl mx-auto">
          <div className="flex flex-col md:flex-row justify-between gap-12 mb-20">
