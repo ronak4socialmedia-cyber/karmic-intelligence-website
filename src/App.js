@@ -7,6 +7,7 @@ import {
  Briefcase, Video, Mic2, Star
 } from 'lucide-react';
 
+
 // --- SEO Component ---
 const MetaHead = ({ title, description }) => {
  useEffect(() => {
@@ -552,8 +553,7 @@ const App = () => {
  );
 
 
- 556
-  = [
+ const navItems = [
    { label: 'Home', id: 'home' },
    { label: 'Services', id: 'services' },
    { label: 'Philosophy', id: 'philosophy' },
@@ -565,7 +565,7 @@ const App = () => {
  ];
 
 
- return 
+ return (
    <div className="min-h-screen bg-[#08090d] text-gray-100 font-sans selection:bg-amber-500/30 selection:text-amber-200">
     
      {/* Navigation */}
@@ -673,4 +673,3 @@ const App = () => {
 
 
 export default App;
-
