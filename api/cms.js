@@ -1,12 +1,12 @@
 // CMS API Endpoints
-// This file handles all CMS operations
-
+// This file handles all CMS operations with optional MongoDB persistence
 import jwt from 'jsonwebtoken';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key-change-this';
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'admin123'; // Change this!
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'admin123';
+const MONGODB_URI = process.env.MONGODB_URI;
 
-// In-memory database (replace with MongoDB in production)
+// Default in-memory database
 let cmsData = {
   hero: {
     subtitle: 'The Conscious Architect',
@@ -33,11 +33,66 @@ let cmsData = {
   }
 };
 
-// Login endpoint
-export default function handler(req, res) {
+// Simple MongoDB helper (for future use)
+let db = null;
+
+async function initDB() {
+  if (MONGODB_URI && !db) {
+    try {
+      const { MongoClient } = await import('mongodb');
+      const client = new MongoClient(MONGODB_URI);
+      await client.connect();
+      db = client.db('karmic_intelligence');
+    } catch (error) {
+      console.log('MongoDB not available, using in-memory storage');
+    }
+  }
+}
+
+async function getCMSData() {
+  if (db) {
+    try {
+      const doc = await db.collection('cms').findOne({ _id: 'content' });
+      return doc?.data || cmsData;
+    } catch (error) {
+      console.log('DB error, using cache');
+      return cmsData;
+    }
+  }
+  return cmsData;
+}
+
+async function saveCMSData(data) {
+  if (db) {
+    try {
+      await db.collection('cms').updateOne(
+        { _id: 'content' },
+        { $set: { data, updatedAt: new Date() } },
+        { upsert: true }
+      );
+    } catch (error) {
+      console.log('DB save error');
+    }
+  }
+  cmsData = data;
+}
+
+export default async function handler(req, res) {
+  await initDB();
+
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
+  res.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, Authorization');
+
+  if (req.method === 'OPTIONS') {
+    res.status(200).end();
+    return;
+  }
+
+  // Login endpoint
   if (req.method === 'POST' && req.url === '/api/auth/login') {
     const { password } = req.body;
-    
     if (password === ADMIN_PASSWORD) {
       const token = jwt.sign({ admin: true }, JWT_SECRET, { expiresIn: '24h' });
       res.status(200).json({ token });
@@ -50,8 +105,8 @@ export default function handler(req, res) {
   // Verify token middleware
   const authHeader = req.headers.authorization;
   const token = authHeader?.split(' ')[1];
-  
   let isAuthenticated = false;
+
   if (token) {
     try {
       jwt.verify(token, JWT_SECRET);
@@ -63,7 +118,8 @@ export default function handler(req, res) {
 
   // GET all content
   if (req.method === 'GET' && req.url === '/api/cms/content') {
-    res.status(200).json(cmsData);
+    const data = await getCMSData();
+    res.status(200).json(data);
     return;
   }
 
@@ -73,8 +129,10 @@ export default function handler(req, res) {
       res.status(401).json({ error: 'Unauthorized' });
       return;
     }
-    cmsData.hero = { ...cmsData.hero, ...req.body };
-    res.status(200).json({ success: true, data: cmsData.hero });
+    const data = await getCMSData();
+    data.hero = { ...data.hero, ...req.body };
+    await saveCMSData(data);
+    res.status(200).json({ success: true, data: data.hero });
     return;
   }
 
@@ -84,8 +142,10 @@ export default function handler(req, res) {
       res.status(401).json({ error: 'Unauthorized' });
       return;
     }
-    cmsData.services = req.body;
-    res.status(200).json({ success: true, data: cmsData.services });
+    const data = await getCMSData();
+    data.services = req.body;
+    await saveCMSData(data);
+    res.status(200).json({ success: true, data: data.services });
     return;
   }
 
@@ -95,8 +155,10 @@ export default function handler(req, res) {
       res.status(401).json({ error: 'Unauthorized' });
       return;
     }
-    cmsData.philosophy = { ...cmsData.philosophy, ...req.body };
-    res.status(200).json({ success: true, data: cmsData.philosophy });
+    const data = await getCMSData();
+    data.philosophy = { ...data.philosophy, ...req.body };
+    await saveCMSData(data);
+    res.status(200).json({ success: true, data: data.philosophy });
     return;
   }
 
