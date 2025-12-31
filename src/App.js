@@ -85,7 +85,6 @@ const eventsList = [
 
 // --- Main App Component ---
 const App = () => {
-   if (window.location.pathname === '/admin') return <AdminDashboard />;
  const [currentPage, setCurrentPage] = useState('home');
 
  
