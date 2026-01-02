@@ -8,6 +8,10 @@ import {
 } from 'lucide-react';
 import AdminDashboard from './pages/AdminDashboard';
 
+const KarmicLogo = () => (<svg width="40" height="40" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="#c41e3a" strokeWidth="12" strokeLinecap="round"><line x1="100" y1="10" x2="85" y2="35" /><line x1="100" y1="10" x2="115" y2="35" /><line x1="165" y1="35" x2="145" y2="45" /><line x1="165" y1="35" x2="155" y2="55" /><line x1="190" y1="100" x2="165" y2="85" /><line x1="190" y1="100" x2="165" y2="115" /><line x1="165" y1="165" x2="155" y2="145" /><line x1="165" y1="165" x2="145" y2="155" /><line x1="100" y1="190" x2="115" y2="165" /><line x1="100" y1="190" x2="85" y2="165" /><line x1="35" y1="165" x2="55" y2="155" /><line x1="35" y1="165" x2="45" y2="145" /><line x1="10" y1="100" x2="35" y2="115" /><line x1="10" y1="100" x2="35" y2="85" /><line x1="35" y1="35" x2="45" y2="55" /><line x1="35" y1="35" x2="55" y2="45" /></g><text x="100" y="112" textAnchor="middle" fontSize="48" fontWeight="bold" fill="#d4a574" fontFamily="Arial, sans-serif">KI</text></svg>);
+
+
+
 
 // --- SEO Component ---
 const MetaHead = ({ title, description }) => {
