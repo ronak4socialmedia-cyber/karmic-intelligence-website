@@ -599,7 +599,7 @@ const App = () => {
                {item.label}
              </button>
            ))}
-           <button onClick={() => setIsMenuOpen(true)} className="ml-4 p-2 hover:text-amber-500"><Menu size={20} /></button>
+           <button onClick={() => setIsMenuOpen(true)}    size={20} /></button>
          </div>
          <button className="lg:hidden" onClick={() => setIsMenuOpen(true)}><Menu /></button>
        </div>
