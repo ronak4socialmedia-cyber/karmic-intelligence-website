@@ -580,7 +580,7 @@ const App = () => {
        <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
          <button onClick={() => navigateTo('home')} className="flex items-center gap-3 group">
            <div className="w-10 h-10 bg-gradient-to-tr from-amber-600 to-orange-400 rounded-full flex items-center justify-center group-hover:rotate-180 transition-transform duration-700">
-             <Compass className="text-white w-6 h-6" />
+             <KarmicLogo /> className="text-white w-6 h-6" />
            </div>
            <div className="flex flex-col items-start">
              <span className="text-lg font-bold tracking-tighter uppercase leading-none">Ashish Mehta</span>
@@ -646,7 +646,7 @@ const App = () => {
          <div className="flex flex-col md:flex-row justify-between gap-12 mb-20">
            <div>
               <div className="flex items-center gap-3 mb-6">
-                 <div className="w-10 h-10 bg-amber-600 rounded-full flex items-center justify-center"><Compass className="text-white w-5 h-5" /></div>
+                 <div className="w-10 h-10 bg-amber-600 rounded-full flex items-center justify-center"><KarmicLogo /></div>
                  <span className="text-2xl font-black italic uppercase">Ashish Mehta</span>
               </div>
               <p className="text-gray-600 max-w-xs text-sm">Pioneering the science of Karmic Engineering. Merging M.Tech precision with Vedic wisdom.</p>
