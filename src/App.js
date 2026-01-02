@@ -113,7 +113,7 @@ const App = () => {
 
 
  const HeroSection = () => (
-   <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+   <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-8 sm:pt-12 md:pt-16 lg:pt-8 sm:pt-12 md:pt-16 lg:pt-20">
      <div className="absolute inset-0 z-0">
        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#08090d]/60 to-[#08090d]" />
        <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-amber-600/10 blur-[150px] rounded-full animate-pulse" />
