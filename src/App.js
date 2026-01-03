@@ -102,6 +102,13 @@ const App = () => {
    return () => window.removeEventListener('scroll', handleScroll);
  }, []);
 
+  useEffect(() => {
+    const path = window.location.pathname;
+    if (path === '/admin') {
+      setCurrentPage('admin');
+    }
+  }, []);
+
 
  const navigateTo = (page) => {
    setCurrentPage(page);
