@@ -560,6 +560,10 @@ const App = () => {
               <div><label className="text-[10px] font-black uppercase tracking-widest text-gray-500 ml-2">Service</label><select className="w-full bg-[#08090d] border border-white/10 rounded-2xl px-6 py-4 mt-2 focus:border-amber-500 outline-none text-gray-300"><option>Astro-Vastu Consultation</option><option>Karmic Analysis</option><option>Education Inquiry</option></select></div>
               <div><label className="text-[10px] font-black uppercase tracking-widest text-gray-500 ml-2">Message</label><textarea rows="4" className="w-full bg-[#08090d] border border-white/10 rounded-2xl px-6 py-4 mt-2 focus:border-amber-500 outline-none text-white"></textarea></div>
    <button className="px-8 py-4 bg-amber-600 rounded-full font-black uppercase tracking-widest text-[10px] text-white hover:bg-amber-500 transition-all">Send Inquiry</button>
+  </form>
+  </div>
+  </div>
+  </div>
   
            </form>
         </div>
