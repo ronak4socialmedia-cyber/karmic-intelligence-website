@@ -565,10 +565,6 @@ const App = () => {
   </div>
   </div>
   
-           </form>
-        </div>
-     </div>
-   </div>
  );
 
 
